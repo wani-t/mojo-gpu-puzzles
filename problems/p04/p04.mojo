@@ -24,7 +24,8 @@ def add_10_2d(
     var row = thread_idx.y
     var col = thread_idx.x
     # FILL ME IN (roughly 2 lines)
-
+    if row<size and col<size:
+        output.unsafe_store(row*size+col, a.unsafe_load(row*size+col) + 10)
 
 # ANCHOR_END: add_10_2d
 
