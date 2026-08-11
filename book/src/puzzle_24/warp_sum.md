@@ -7,7 +7,7 @@ combine results automatically, demonstrating how warp programming transforms GPU
 synchronization.
 
 **Key insight:** _The
-[warp.sum()](https://docs.modular.com/mojo/std/gpu/primitives/warp/sum)
+[warp.sum()](https://mojolang.org/docs/std/gpu/primitives/warp/sum/)
 operation leverages SIMT execution to replace shared memory + barriers + tree
 reduction with a single hardware-accelerated instruction._
 
@@ -289,7 +289,7 @@ You need to complete the `compute_dot_product` function with
 **10 lines or fewer**:
 
 ```mojo
-@parameter
+@__parameter
 @always_inline
 def compute_dot_product[simd_width: Int, rank: Int](indices: IndexList[rank]) capturing -> None:
     idx = indices[0]

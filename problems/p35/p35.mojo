@@ -1,7 +1,14 @@
 # ===----------------------------------------------------------------------=== #
+# Copyright (c) 2026, Modular Inc. All rights reserved.
 #
-# This file is Modular Inc proprietary.
+# Licensed under the Apache License v2.0 with LLVM Exceptions:
+# https://llvm.org/LICENSE.txt
 #
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 # ===----------------------------------------------------------------------=== #
 from std.gpu import thread_idx, block_dim, block_idx
 from max.gpu.host import DeviceContext
@@ -215,10 +222,10 @@ def test_aligned() raises:
 # ---------------------------------------------------------------------------- #
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_scalar(mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def workflow(ctx: DeviceContext) raises:
         var out = ctx.enqueue_create_buffer[dtype](SIZE)
@@ -245,10 +252,10 @@ def benchmark_scalar(mut b: Bencher) raises:
     bencher_iter_custom[workflow](b, bench_ctx)
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_unaligned(mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def workflow(ctx: DeviceContext) raises:
         var out = ctx.enqueue_create_buffer[dtype](SIZE)
@@ -275,10 +282,10 @@ def benchmark_unaligned(mut b: Bencher) raises:
     bencher_iter_custom[workflow](b, bench_ctx)
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_aligned(mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def workflow(ctx: DeviceContext) raises:
         var out = ctx.enqueue_create_buffer[dtype](SIZE)

@@ -1,7 +1,14 @@
 # ===----------------------------------------------------------------------=== #
+# Copyright (c) 2026, Modular Inc. All rights reserved.
 #
-# This file is Modular Inc proprietary.
+# Licensed under the Apache License v2.0 with LLVM Exceptions:
+# https://llvm.org/LICENSE.txt
 #
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 # ===----------------------------------------------------------------------=== #
 from std.gpu import thread_idx, block_dim, block_idx
 from max.gpu.sync import barrier
@@ -193,10 +200,10 @@ def balanced_kernel(
 # ANCHOR_END: balanced_kernel
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_minimal_parameterized[test_size: Int](mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def minimal_workflow(ctx: DeviceContext) raises:
         comptime layout = row_major[test_size]()
@@ -230,12 +237,12 @@ def benchmark_minimal_parameterized[test_size: Int](mut b: Bencher) raises:
     bencher_iter_custom[minimal_workflow](b, bench_ctx)
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_sophisticated_parameterized[
     test_size: Int
 ](mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def sophisticated_workflow(ctx: DeviceContext) raises:
         comptime layout = row_major[test_size]()
@@ -269,10 +276,10 @@ def benchmark_sophisticated_parameterized[
     bencher_iter_custom[sophisticated_workflow](b, bench_ctx)
 
 
-@parameter
+@__parameter
 @always_inline
 def benchmark_balanced_parameterized[test_size: Int](mut b: Bencher) raises:
-    @parameter
+    @__parameter
     @always_inline
     def balanced_workflow(ctx: DeviceContext) raises:
         comptime layout = row_major[test_size]()
